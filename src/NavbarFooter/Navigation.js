@@ -2,7 +2,7 @@ import React from "react";
 
 function Navigation({ activeTab, handleActiveTab }) {
   return (
-    <div>
+    <div className="navBar">
       {activeTab.map((item, index) => {
         return (
           <div

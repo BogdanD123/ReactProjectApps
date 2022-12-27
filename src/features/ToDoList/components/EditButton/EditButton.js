@@ -1,5 +1,8 @@
 import React, { useState } from "react";
-
+import { SiCheckmarx } from "react-icons/si";
+import { FaEdit } from "react-icons/fa";
+import { GiConfirmed } from "react-icons/gi";
+import "./EditButton.css";
 function EditButton({ editData, handleCompletedButton, handleInputTask }) {
   const [editButton, setEditButton] = useState("");
   const [editInput, setEditInput] = useState("");
@@ -22,13 +25,14 @@ function EditButton({ editData, handleCompletedButton, handleInputTask }) {
                 }}
               ></input>
               <button
+                className="submitButton btn"
                 onClick={() => {
                   setEditButton("");
                   setEditInput("");
                   handleInputTask(editInput, index);
                 }}
               >
-                Submit
+                <GiConfirmed />
               </button>
             </div>
           );
@@ -37,14 +41,18 @@ function EditButton({ editData, handleCompletedButton, handleInputTask }) {
           <div key={index}>
             <div>{item}</div>
             <button
+              className="editButton btn"
               onClick={() => {
                 editTheButtons(item);
               }}
             >
-              Edit
+              <FaEdit className="editIcon icon" />
             </button>
-            <button onClick={() => handleCompletedButton(item)}>
-              Completed
+            <button
+              className="completedButton btn"
+              onClick={() => handleCompletedButton(item)}
+            >
+              <SiCheckmarx className="completedIcon icon" />
             </button>
           </div>
         );

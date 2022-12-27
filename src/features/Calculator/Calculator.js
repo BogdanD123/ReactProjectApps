@@ -1,59 +1,54 @@
 import React, { useState } from "react";
+import { calcButtons } from "./helper";
 import "./Calculator.css";
+
+//ReactApp #Calculator
+
 function Calculator() {
   const [data, setData] = useState("");
-  const [result, setResult] = useState("");
-
-  const calcButtons = [];
-  [9, 8, 7, 6, 5, 4, 3, 2, 1, 0].forEach((item, index) => {
-    calcButtons.push(
-      <button
-        onClick={(e) => setData(data + e.target.value)}
-        key={index}
-        value={item}
-      >
-        {item}
-      </button>
-    );
-  });
 
   const deleteValue = () => {
-    setData(data.slice(0, -1));
+    if (data) {
+      setData(data.slice(0, -1));
+    }
   };
 
   return (
-    <div className="divContainer">
-      <div className="inputContainer">{data} </div>
-      <div className="buttonContainer">
-        {calcButtons}
-        <div>
-          <button onClick={(e) => setData(data + e.target.value)} value="+">
-            +
-          </button>
-          <button onClick={(e) => setData(data + e.target.value)} value="-">
-            -
-          </button>
-          <button onClick={(e) => setData(data + e.target.value)} value="*">
-            *
-          </button>
-          <button onClick={(e) => setData(data + e.target.value)} value="/">
-            /
-          </button>
-          <button
-            onClick={(e) => {
-              try {
-                setData(eval(`${data + e.target.value}`));
-              } catch (err) {
-                console.log(err);
-              }
-            }}
-          >
-            =
-          </button>
-        </div>
+    <div className="calcContainer">
+      <div className="inputActionsContainer">{data} </div>
+      <div>
+        {calcButtons.map((item) => {
+          console.log(item);
+          return (
+            <button
+              className="calculatorButtonsContainer"
+              key={item}
+              onClick={() => setData(data + item)}
+            >
+              {item}
+            </button>
+          );
+        })}
 
-        <button onClick={() => deleteValue({ data })}>DELETE</button>
-        <button onClick={() => setData("")}>AC</button>
+        <button
+          className="result"
+          onClick={() => {
+            if (data) {
+              // eslint-disable-next-line
+              return setData(eval(data));
+            }
+            return null;
+          }}
+        >
+          =
+        </button>
+
+        <button className="deleteButton" onClick={() => deleteValue({ data })}>
+          DELETE
+        </button>
+        <button className="acButton" onClick={() => setData("")}>
+          AC
+        </button>
       </div>
     </div>
   );

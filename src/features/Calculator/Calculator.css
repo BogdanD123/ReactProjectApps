@@ -1,51 +1,86 @@
 :root {
-  --ligth: #e0eae0;
+  --light: #e0eae0;
   --redish: #c92667;
   --blue: #02022e;
+  --orange: #fd6602;
+  --light-blue: rgb(0, 111, 171);
 }
-button {
-  padding: 15px;
-  margin: 2px;
-  appearance: none;
-  outline: none;
-  transition: 0.4;
+
+button:hover {
+  opacity: 0.6;
+  background-color: var(--light);
+}
+
+.calculatorButtonsContainer {
+  padding: 16px;
+  margin: 1px;
+  transition: 0.4s;
   font-size: 16px;
   cursor: pointer;
   border: none;
   border-radius: 5px;
   background-color: var(--blue);
   color: aqua;
-  flex: 1 1 33.333%;
-  max-width: 1 1 33.333%;
 }
-button:hover {
-  opacity: 0.6;
-  background-color: var(--ligth);
-}
-.buttonContainer {
-  overflow: hidden;
-}
-.divContainer {
+
+.calcContainer {
   display: flex;
-  width: 175px;
-  height: 350px;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 200px;
+  height: 370px;
+  padding: 4px;
   background-color: var(--blue);
   border-radius: 5px;
   border: 1px solid;
-  box-shadow: 1px 0.2px 6px 0.01px;
-  margin: 0px 16px;
-  flex-direction: column;
-  justify-content: space-evenly;
+  box-shadow: 1px 2px 6px 1px;
 }
-.inputContainer {
-  max-height: max-content;
-  background-color: var(--redish);
-  color: var(--ligth);
+.inputActionsContainer {
+  background-color: rgba(0, 0, 255, 0.4);
+  color: var(--light);
   text-overflow: ellipsis;
   border-radius: 5px;
+  padding: 3px 5px;
+  height: 50px;
 }
 .operationsContainer {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+}
+.result {
+  padding: 16px;
+  margin: 1px 1px;
+  transition: 0.4s;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--light-blue);
+  color: aqua;
+  width: 94px;
+}
+.deleteButton {
+  padding: 16px;
+  width: 100px;
+  margin: 0px 2px;
+  transition: 0.4s;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--orange);
+  color: aqua;
+}
+.acButton {
+  width: 100%;
+  padding: 16px;
+  margin: 3px 1px;
+  transition: 0.4s;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: #c92667;
+  color: aqua;
 }

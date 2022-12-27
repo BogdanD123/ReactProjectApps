@@ -1,33 +1,57 @@
 import React, { useState } from "react";
-
+import "./ToDoInput.css";
 function ToDoInput({ handleTaskList }) {
   const [input, setInput] = useState("");
+  const [popUp, setPopUp] = useState("");
 
   const handleInputChange = (data) => {
-    setInput(data);
+    return setInput(data);
   };
-  console.log(input);
 
+  const handlePopUp = (data) => {
+    if (data === "") {
+      setPopUp(
+        <div className="popUpContainer">
+          <div className="popUp">No task added</div>
+        </div>
+      );
+    }
+    setTimeout(() => {
+      setPopUp("");
+    }, 2000);
+  };
   return (
     <>
-      <div>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+        }}
+      >
         <input
+          className="addTaskInput"
           type={"text"}
-          placeholder={"Please enter a task"}
+          placeholder={"Please enter a task..."}
           value={input}
           onChange={(e) => {
             handleInputChange(e.target.value);
           }}
         />
         <button
+          className="taskButton"
           onClick={() => {
-            handleTaskList(input);
-            handleInputChange("");
+            if (input.trim() === "") {
+              handlePopUp(input);
+            } else {
+              handleTaskList(input);
+              handleInputChange("");
+            }
           }}
         >
           Add a task
         </button>
-      </div>
+        <br />
+        {popUp}
+      </form>
     </>
   );
 }
